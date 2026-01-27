@@ -4,7 +4,7 @@
 
 ## Project Introduction
 
-This example demonstrates how to simulate a typical LLM (Large Language Model) intelligent conversation scenario using the Espressif ESP32-S3 Korvo V3 development board, enabling real-time intelligent conversations with large language models.
+This example demonstrates how to simulate a typical LLM (Large Language Model) intelligent conversation scenario using the ReSpeaker XMOS XVF3800 with XIAO ESP32S3 development board, enabling real-time intelligent conversations with large language models.
 
 ### File Structure
 ```
@@ -42,7 +42,7 @@ This example demonstrates how to simulate a typical LLM (Large Language Model) i
 
 ### Hardware Requirements
 
-This example currently only supports the ` Respeaker XMOS XVF3800 with XIAO ESP32S3 ` development board.
+This example currently only supports the ` ReSpeaker XMOS XVF3800 with XIAO ESP32S3 ` development board.
 
 ## Build and Flash
 

@@ -4,7 +4,7 @@
 
 ## 例程简介
 
-本例程演示了如何通过乐鑫 ESP32-S3 Korvo V3 开发板，模拟一个典型的大模型智能对话场景，可以演示进入大模型进行实时智能对话。
+本例程演示了如何通过ReSpeaker XMOS XVF3800 with XIAO ESP32S3开发板，模拟一个典型的大模型智能对话场景，可以演示进入大模型进行实时智能对话。
 
 ### 文件结构
 ```
@@ -42,7 +42,7 @@
 
 ### 硬件要求
 
-本例程目前仅支持` Respeaker XMOS XVF3800 with XIAO ESP32S3 `开发板。
+本例程目前仅支持` ReSpeaker XMOS XVF3800 with XIAO ESP32S3 `开发板。
 
 ## 编译和下载
 
