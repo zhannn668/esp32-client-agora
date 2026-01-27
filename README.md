@@ -1,6 +1,6 @@
 # Agora ESP32 LLM Intelligent Conversation
 
-*[简体中文](README.zh.md) | English*
+*[简体中文](README.ch.md) | English*
 
 ## Project Introduction
 
