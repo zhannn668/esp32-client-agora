@@ -142,8 +142,9 @@ git apply $ADF_PATH/idf_patches/idf_v5.2_freertos.patch
 
 #### 编译固件
 
-请运行如下命令：
+将本例程(esp32-client)目录拷贝至 Espressif/frameworks 目录下。请运行如下命令：
 ```bash
+$ cd ../esp32-client
 $ idf.py set-target esp32s3
 $ idf.py menuconfig	--> Agora Demo for ESP32 --> (配置 WIFI SSID 和 Password)
 $ idf.py build

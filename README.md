@@ -143,8 +143,9 @@ git apply $ADF_PATH/idf_patches/idf_v5.2_freertos.patch
 
 #### Build Firmware
 
-Run the following commands:
+Copy the esp32-client directory to the Espressif/frameworks directory. Run the following commands:
 ```bash
+$ cd ../esp32-client
 $ idf.py set-target esp32s3
 $ idf.py menuconfig	--> Agora Demo for ESP32 --> (Configure WIFI SSID and Password)
 $ idf.py build
