@@ -42,7 +42,7 @@
 
 ### 硬件要求
 
-本例程目前仅支持`Seeed Studio reSpeaker XVF3800`开发板。
+本例程目前仅支持` Respeaker XMOS XVF3800 with XIAO ESP32S3 `开发板。
 
 ## 编译和下载
 
@@ -142,9 +142,8 @@ git apply $ADF_PATH/idf_patches/idf_v5.2_freertos.patch
 
 #### 编译固件
 
-将本例程(esp32-client)目录拷贝至 Espressif/frameworks 目录下。请运行如下命令：
+请运行如下命令：
 ```bash
-$ cd ../esp32-client
 $ idf.py set-target esp32s3
 $ idf.py menuconfig	--> Agora Demo for ESP32 --> (配置 WIFI SSID 和 Password)
 $ idf.py build

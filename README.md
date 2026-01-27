@@ -42,7 +42,7 @@ This example demonstrates how to simulate a typical LLM (Large Language Model) i
 
 ### Hardware Requirements
 
-This example currently only supports the `Seeed Studio reSpeaker XVF3800` development board.
+This example currently only supports the ` Respeaker XMOS XVF3800 with XIAO ESP32S3 ` development board.
 
 ## Build and Flash
 
@@ -143,9 +143,8 @@ git apply $ADF_PATH/idf_patches/idf_v5.2_freertos.patch
 
 #### Build Firmware
 
-Copy the esp32-client directory to the Espressif/frameworks directory. Run the following commands:
+Run the following commands:
 ```bash
-$ cd ../esp32-client
 $ idf.py set-target esp32s3
 $ idf.py menuconfig	--> Agora Demo for ESP32 --> (Configure WIFI SSID and Password)
 $ idf.py build
