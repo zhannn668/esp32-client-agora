@@ -98,7 +98,7 @@ git apply $ADF_PATH/idf_patches/idf_v5.2_freertos.patch
 
 #### 编译固件
 
-将本例程(esp32-client)目录拷贝至 ~/esp 目录下。请运行如下命令：
+将本例程(esp32-client)目录拷贝至 ~/ten-framework/ai_agents 目录下。请运行如下命令：
 
 ```bash
 $ . $HOME/esp/esp-idf/export.sh

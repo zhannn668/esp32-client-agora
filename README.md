@@ -98,7 +98,7 @@ git apply $ADF_PATH/idf_patches/idf_v5.2_freertos.patch
 
 #### Build Firmware
 
-Copy the esp32-client directory to the ~/esp directory. Run the following commands:
+Copy the esp32-client directory to the ~/ten-framework/ai_agents directory. Run the following commands:
 
 ```bash
 $ . $HOME/esp/esp-idf/export.sh
