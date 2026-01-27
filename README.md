@@ -143,7 +143,7 @@ git apply $ADF_PATH/idf_patches/idf_v5.2_freertos.patch
 
 #### Build Firmware
 
-Copy the esp32-client directory to the Espressif/frameworks directory. Run the following commands:
+Copy the esp32-client directory to the \ten-framework\ai_agents directory. Run the following commands:
 ```bash
 $ cd ../esp32-client
 $ idf.py set-target esp32s3
