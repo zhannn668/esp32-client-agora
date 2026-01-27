@@ -1,37 +1,37 @@
-# Agora ESP32 Large Model Intelligent Dialogue
+# Agora ESP32 LLM Intelligent Conversation
 
-*[简体中文](./README.cn.md) | English*
+*[简体中文](README.zh.md) | English*
 
-## Overview
+## Project Introduction
 
-This is an RTC Client SDK & Demo running on Espressif ESP32-S3 Korvo V3 development board. This example demonstrates how to make TEN-Agent work with it.
+This example demonstrates how to simulate a typical LLM (Large Language Model) intelligent conversation scenario using the Espressif ESP32-S3 Korvo V3 development board, enabling real-time intelligent conversations with large language models.
 
 ### File Structure
 ```
 ├── CMakeLists.txt
-├── components                                  Agora IoT SDK component
-│   ├── agora_iot_sdk
-│   │   ├── CMakeLists.txt
-│   │   ├── include                             Agora IoT SDK header files
-│   │   │   ├── agora_rtc_api.h
-│   │   └── libs                                Agora IoT SDK libraries                      
-│   │       ├── libagora-cjson.a
-│   │       ├── libahpl.a
-│   │       ├── librtsa.a
+├── components                                  Agora iot sdk component
+│   ├── agora_iot_sdk
+│   │   ├── CMakeLists.txt
+│   │   ├── include                             Agora iot sdk header files
+│   │   │   ├── agora_rtc_api.h
+│   │   └── libs                                Agora iot sdk libraries                      
+│   │       ├── libagora-cjson.a
+│   │       ├── libahpl.a
+│   │       ├── librtsa.a
 |   ├── esp32-camera                           esp32-camera component submodule
 ├── main                                        LLM Demo code
-│   ├── ai_agent.h
-│   ├── app_config.h
-│   ├── common.h
-│   ├── audio_proc.h
-│   ├── rtc_proc.h
-│   ├── CMakeLists.txt
-│   ├── Kconfig.projbuild
+│   ├── ai_agent.h
+│   ├── app_config.h
+│   ├── common.h
+│   ├── audio_proc.h
+│   ├── rtc_proc.h
+│   ├── CMakeLists.txt
+│   ├── Kconfig.projbuild
 |   ├── ai_agent.c
 |   ├── audio_proc.c
 |   ├── rtc_proc.c
-│   └── llm_main.c
-├── partitions.csv                              Partition table
+│   └── llm_main.c
+├── partitions.csv                              partition table
 ├── README.en.md
 ├── README.md
 ├── sdkconfig.defaults
@@ -42,38 +42,40 @@ This is an RTC Client SDK & Demo running on Espressif ESP32-S3 Korvo V3 developm
 
 ### Hardware Requirements
 
-This example currently supports the `ESP32-S3-Korvo-2 V3` development board only.
+This example currently only supports the `Seeed Studio reSpeaker XVF3800` development board.
 
-## Compilation and Download
+## Build and Flash
 
 ### esp32-camera
 
-To compile and run this example, you need the esp32-camera component.
-The component has been added as a submodule in the `components/esp32-camera` directory.
-Run the following command to clone the submodule:
+Building and running this example requires the esp32-camera component.  
+This component is already included in the `components/esp32-camera` directory of this repository.  
+After cloning this repository, you can use it directly without additional downloads or git submodule operations.
 
-```bash
-git submodule update --init --recursive
-```
+The dependency components of esp32-camera (such as esp_jpeg, etc.) will be automatically downloaded by the ESP-IDF Component Manager during the first build.
 
 ### Agora IOT SDK
 
-To compile and run this example, you need the Agora IoT SDK.
-The SDK can be downloaded at [here](https://rte-store.s3.amazonaws.com/agora_iot_sdk.tar)
-Put `agora_iot_sdk.tar` to `esp32-client/components` directory and run the following command:
+Building and running this example requires the Agora IoT SDK.  
+Due to licensing and distribution restrictions, the Agora IoT SDK is not included in this repository and must be downloaded manually by users.
+
+Please download `agora_iot_sdk.tar` from [here](https://rte-store.s3.amazonaws.com/agora_iot_sdk.tar),  
+and extract it to the `esp32-client/components/agora_iot_sdk` directory:
 
 ```bash
 cd esp32-client/components
 tar -xvf agora_iot_sdk.tar
 ```
 
+If complete Agora IoT SDK files already exist in this directory, no repeated operation is necessary.
+
 ### Linux Operating System
 
 #### Default IDF Branch
 
-This example supports IDF tag v[5.2.3] and later versions, with the default set to IDF tag v[5.2.3] (commit id: c9763f62dd00c887a1a8fafe388db868a7e44069).
+This example supports IDF tag v[5.2.3] and later. The example uses IDF tag v[5.2.3] by default (commit id: c9763f62dd00c887a1a8fafe388db868a7e44069).
 
-To select the correct IDF branch, run the following commands:
+To select the IDF branch, run the following commands:
 
 ```bash
 cd $IDF_PATH
@@ -82,11 +84,11 @@ git pull
 git submodule update --init --recursive
 ```
 
-This example supports ADF v2.7 tag (commit id: 9cf556de500019bb79f3bb84c821fda37668c052).
+This example supports ADF v2.7 tag (commit id: 9cf556de500019bb79f3bb84c821fda37668c052)
 
-#### Applying the IDF Patch
+#### Apply IDF Patch
 
-A patch must be applied to IDF. Use the following command:
+This example requires applying 1 patch to IDF. Use the following commands:
 
 ```bash
 export ADF_PATH=~/esp/esp-adf
@@ -94,9 +96,9 @@ cd $IDF_PATH
 git apply $ADF_PATH/idf_patches/idf_v5.2_freertos.patch
 ```
 
-#### Compiling the Firmware
+#### Build Firmware
 
-Copy the example project directory (esp32-client) to the `~/esp` directory and run the following commands:
+Copy the esp32-client directory to the ~/esp directory. Run the following commands:
 
 ```bash
 $ . $HOME/esp/esp-idf/export.sh
@@ -105,103 +107,99 @@ $ idf.py set-target esp32s3
 $ idf.py menuconfig	--> Agora Demo for ESP32 --> (Configure WIFI SSID and Password)
 $ idf.py build
 ```
-
-To configure FreeRTOS backward compatibility:
-In `menuconfig`, navigate to `Component config` --> `FreeRTOS` --> `Kernel` and enable `configENABLE_BACKWARD_COMPATIBILITY`.
+Configure FreeRTOS backward compatibility:
+In menuconfig, go to Component config --> FreeRTOS --> Kernel and set configENABLE_BACKWARD_COMPATIBILITY
 
 ### Windows Operating System
 
 #### Default IDF Branch
 
-Download IDF, selecting version v5.2.3 (offline version) from the following link:  
-[ESP-IDF Windows Setup](https://docs.espressif.com/projects/esp-idf/zh_CN/v5.2.3/esp32/get-started/windows-setup.html)
+Download IDF, select v5.2.3 offline version for download. The example uses IDF tag v[5.2.3] by default.
+https://docs.espressif.com/projects/esp-idf/en/v5.2.3/esp32/get-started/windows-setup.html
 
-Download ADF to the `Espressif/frameworks` directory to support ADF v2.7 tag (commit id: 9cf556de500019bb79f3bb84c821fda37668c052):  
-[ESP-ADF Setup](https://docs.espressif.com/projects/esp-adf/zh_CN/latest/get-started/index.html#step-2-get-esp-adf)
+Download ADF to Espressif/frameworks directory, supporting ADF v2.7 tag (commit id: 9cf556de500019bb79f3bb84c821fda37668c052)
+https://docs.espressif.com/projects/esp-adf/en/latest/get-started/index.html#step-2-get-esp-adf
 
-#### Applying the IDF Patch
 
-Method 1: Add `ADF_PATH` to the environment variables in system settings:
-```
+#### Apply IDF Patch
+
+Method 1: Add ADF_PATH to environment variables in system settings
 E:\esp32s3\Espressif\frameworks\esp-adf
-```
 
-Method 2: Add `ADF_PATH` via the command line:
+Method 2: Add ADF_PATH to environment variables via command line
+
 ```bash
 $ setx ADF_PATH Espressif/frameworks/esp-adf
 ```
 
-**Note:** After setting the `ADF_PATH` environment variable, restart ESP-IDF 5.2 PowerShell for changes to take effect.
+Note: After setting the ADF_PATH environment variable, restart ESP-IDF 5.2 PowerShell for it to take effect.
 
-Apply the required patch to IDF using:
+This example requires applying 1 patch to IDF. Use the following commands:
+
 ```bash
 cd $IDF_PATH
 git apply $ADF_PATH/idf_patches/idf_v5.2_freertos.patch
 ```
 
-#### Compiling the Firmware
+#### Build Firmware
 
-Copy the example project directory (esp32-client) to the `Espressif/frameworks` directory and run the following commands:
+Copy the esp32-client directory to the Espressif/frameworks directory. Run the following commands:
 ```bash
 $ cd ../esp32-client
 $ idf.py set-target esp32s3
 $ idf.py menuconfig	--> Agora Demo for ESP32 --> (Configure WIFI SSID and Password)
 $ idf.py build
 ```
+Configure FreeRTOS backward compatibility:
+In menuconfig, go to Component config --> FreeRTOS --> Kernel and set configENABLE_BACKWARD_COMPATIBILITY
 
-Configure FreeRTOS backward compatibility:  
-In `menuconfig`, navigate to `Component config` --> `FreeRTOS` --> `Kernel` and enable `configENABLE_BACKWARD_COMPATIBILITY`.
 
-### Flashing the Firmware
+### Flash Firmware
 
 Run the following command:
+
 ```bash
 $ idf.py -p /dev/ttyUSB0 flash monitor
 ```
-**Note:** On Linux, you might encounter permission issues with `/dev/ttyUSB0`. Run the following command to fix it:
-```bash
-sudo usermod -aG dialout $USER
-```
+Note: On Linux systems, you may encounter permission issues with /dev/ttyUSB0. Please execute `sudo usermod -aG dialout $USER`
 
-Once flashing is complete, the example will run automatically. After the device joins the RTC channel, the serial output will display:  
-**"Agora: Press [SET] key to Join the Ai Agent ..."**
+After successful flashing, this example will run automatically. After the device joins the RTC channel, you will see the serial port output: "Agora: Press [SET] key to Join the Ai Agent ...".
 
-## How to Use the Example
 
-### Quick Start in 5 Minutes
+## How to Use This Example
 
-**Note:**  
-Ensure at least one speaker is connected to the development board.
+### Five-Minute Quick Start
 
-### Configure your own agent
+Note:
 
-Let's walk you through creating your own user and device accounts.
+1. Please ensure that at least one speaker is connected to the development board.
 
-#### Update app_config.h
+### Configure Your Own AI Agent
 
-1. Open the `app_config.h` file in the project.
-2. Modify `TENAI_AGENT_URL` to the URL of your TEN-Agent server (usually the 8080 port service).
-3. Modify `AI_AGENT_CHANNEL_NAME` to a unique channel name.
-4. If you have your Ten-Agent configured for `openai_v2v` or `gemini_v2v` (depending on the graph macro (`CONFIG_GRAPH_OPENAI` or `CONFIG_GRAPH_GEMINI`) you set in `app_config.h`) graph working, you should be good to go. Currently `openai_v2v` does not support image input, while `gemini_v2v` does.
-5. If you want to use other graphs, you can modify how request is constructed in `ai_agent.c` file the `_build_start_json` method.
-6. Recompile and flash the firmware.
+1. Please configure your own AI Agent in the `app_config.h` file.
+2. Modify `TENAI_AGENT_URL` to your own TEN-Agent server URL (typically the port 8080 service you started with `task run`).
+3. Modify `AI_AGENT_CHANNEL_NAME` to your own AI Agent Channel name.
+4. If you have previously configured `openai_v2v` or `gemini_v2v` (depending on the macro definition you configured in `app_config.h` (`CONFIG_GRAPH_OPENAI` or `CONFIG_GRAPH_GEMINI`)) graph in TEN-Agent, you can directly request to use it. `openai_v2v` currently does not support image input, while `gemini_v2v` supports image input.
+5. If you have not configured `openai_v2v` graph or want to use another graph, you need to modify the startup-related parameters in the `_build_start_json` function in `ai_agent.c`.
+6. Recompile and flash to the chip.
 
-#### Demo: Real-time Voice Dialogue with Large Model AI Agent
+#### Demo: LLM AI Agent Real-time Voice Conversation
 
-1. Press the `SET` button to start the large model.
-2. Press the `MUTE` button to stop the large model.
-3. Press the `VOL+` button to increase volume (increments of 10, up to a maximum of 100).
-4. Press the `VOL-` button to decrease volume (decrements of 10, down to a minimum of 0).
-5. After the device boots up, it will automatically connect to the RTC channel associated with the generated APPID. Press the `SET` button to initiate real-time voice dialogue; press the `MUTE` button to stop it.
+1. Press the `SET` button to start the LLM
+2. Press the `MUTE` button to stop the LLM
+3. Press the `VOL+` button to increase volume by 10, maximum 100
+4. Press the `VOL-` button to decrease volume by 10, minimum 0
+5. After the device boots up, it automatically connects to the server and joins the channel corresponding to the APPID. Press the `SET` button to start the LLM and begin real-time voice conversation; press the `MUTE` button to stop the LLM.
+
 
 ## About Agora
 
-Agora’s audio and video IoT platform leverages its proprietary real-time transmission network, **Agora SD-RTN™ (Software Defined Real-time Network)**, to provide real-time audio and video streaming capabilities for Linux/RTOS devices with networking capabilities. The solution ensures high connectivity, real-time performance, and stability even under uncertain network conditions using advanced techniques such as forward error correction, intelligent retransmission, bandwidth prediction, and stream smoothing. Additionally, it offers a minimal memory footprint, making it ideal for resource-constrained IoT devices, including the entire Espressif ESP32 series.
+The Agora Audio and Video IoT platform solution relies on Agora's self-built underlying real-time transmission network, Agora SD-RTN™ (Software Defined Real-time Network), providing audio and video stream real-time transmission capabilities over the Internet for all Linux/RTOS devices with network functionality. This solution fully utilizes Agora's global network nodes and intelligent dynamic routing algorithms, while supporting various combined anti-weak network strategies such as forward error correction, intelligent retransmission, bandwidth prediction, and stream smoothing. It can still deliver the best audio and video network experience with high connectivity, high real-time performance, and high stability in various uncertain network environments where devices are located. In addition, this solution has an extremely small package size and memory footprint, making it suitable for running on any resource-constrained IoT device, including all Espressif ESP32 series products.
 
 ## Technical Support
 
-For technical support, follow the links below:
+Please follow the links below to get technical support:
 
-- Report bugs and inquiries directly to the community representatives.
+- If you find bugs in the example code or have other questions, you can directly contact the community manager
 
-We will respond as soon as possible.
+We will reply as soon as possible.

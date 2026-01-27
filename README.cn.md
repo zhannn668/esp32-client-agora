@@ -42,27 +42,32 @@
 
 ### 硬件要求
 
-本例程目前仅支持`ESP32-S3-Korvo-2 V3`开发板。
+本例程目前仅支持`Seeed Studio reSpeaker XVF3800`开发板。
 
 ## 编译和下载
 
 ### esp32-camera
 
-编译运行本示例需要 esp32-camera 组件。该组件已作为子模块添加到 `components/esp32-camera` 目录中。请运行以下命令克隆子模块：
+编译运行本示例需要 esp32-camera 组件。  
+该组件已直接包含在本仓库的 `components/esp32-camera` 目录中，  
+在克隆本仓库后即可直接使用，无需额外下载或执行 git submodule 相关操作。
 
-```bash
-git submodule update --init --recursive
-```
+esp32-camera 的依赖组件（如 esp_jpeg 等）将在首次构建时由 ESP-IDF Component Manager 自动下载。
 
 ### Agora IOT SDK
 
-编译运行本示例需要 Agora IoT SDK。Agora IoT SDK 可以在 [这里](https://rte-store.s3.amazonaws.com/agora_iot_sdk.tar) 下载。
-将 `agora_iot_sdk.tar` 放到 `esp32-client/components` 目录下，并运行如下命令：
+编译运行本示例需要 Agora IoT SDK。  
+由于授权及分发方式限制，Agora IoT SDK 未包含在本仓库中，需要用户手动下载。
+
+请从 [这里](https://rte-store.s3.amazonaws.com/agora_iot_sdk.tar) 下载 `agora_iot_sdk.tar`，  
+并将其解压到 `esp32-client/components/agora_iot_sdk` 目录中：
 
 ```bash
 cd esp32-client/components
 tar -xvf agora_iot_sdk.tar
 ```
+
+如果该目录中已经存在完整的 Agora IoT SDK 文件，则无需重复操作。
 
 ### Linux 操作系统
 

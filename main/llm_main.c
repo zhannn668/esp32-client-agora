@@ -55,14 +55,11 @@
 
 app_t g_app = {
   .b_call_session_started = false,
- // .b_ai_agent_generated   = false,
   .b_ai_agent_generated   = false,
   .b_wifi_connected       = false,
   .b_ai_agent_joined      = false,
- // .app_id                 = { 0 }, LILI
-  .app_id                 = "550749b706214846a1a2eef3612a8cd3",
- // .token                  = { 0 },
-   .token                  = "",
+  .app_id                 = "YOUR_AGORA_APP_ID",
+   .token                  = "",//KEEPO EMPTY
 };
 
 static void event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
