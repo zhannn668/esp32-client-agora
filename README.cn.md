@@ -164,31 +164,13 @@ $ idf.py -p /dev/ttyUSB0 flash monitor
 
 下载成功后，本例程会自动运行，待设备端加入RTC频道完成后，可以看到串口打印："Agora: Press [SET] key to Join the Ai Agent ..."。
 
-
-## 如何使用例程
-
-### 五分钟快速体验
-
-注意：
-
-1. 请确认开发板上已至少接入一个扬声器。
-
 ### 配置你自己的 AI Agent
 
 1. 请在 `app_config.h` 文件中配置你自己的 AI Agent。
 2. 修改 `TENAI_AGENT_URL` 为你自己的 TEN-Agent 服务器 URL (一般为你通过 `task run` 启动的8080服务)。
 3. 修改 `AI_AGENT_CHANNEL_NAME` 为你自己的 AI Agent Channel 名称。
-4. 如果你之前就在TEN-Agent配置过 `openai_v2v` 或 `gemini_v2v` (取决于你在`app_config.h`中配置的宏定义(`CONFIG_GRAPH_OPENAI` 或 `CONFIG_GRAPH_GEMINI`)) 的graph， 你可以直接请求使用。`openai_v2v` 目前不支持图像输入，`gemini_v2v` 支持图像输入。
-5. 如果你没有配置过 `openai_v2v` graph 或者想使用其他 graph，你需要在 `ai_agent.c` 的 `_build_start_json` 函数中修改启动的相关参数。
-6. 重新编译后烧录到芯片上。
+4. 重新编译后烧录到芯片上。
 
-#### Demo：大模型AiAgent实时语音对话
-
-1. 按键 `SET` 表示启动大模型
-2. 按键 `MUTE` 表示停止大模型
-3. 按键 `VOL+` 表示增大音量，一次增大10，最大到100
-4. 按键 `VOL-` 表示减小音量，一次减小10，最小到0
-5. 设备开机后，设备自动连接到服务器生成APPID对应的Channel频道内。按下 `SET` 键，开始启动大模型，开始进行实时语音对话；按下 `MUTE` 键，停止大模型。
 
 
 ## 关于声网

@@ -166,31 +166,12 @@ Note: On Linux systems, you may encounter permission issues with /dev/ttyUSB0. P
 After successful flashing, this example will run automatically. After the device joins the RTC channel, you will see the serial port output: "Agora: Press [SET] key to Join the Ai Agent ...".
 
 
-## How to Use This Example
-
-### Five-Minute Quick Start
-
-Note:
-
-1. Please ensure that at least one speaker is connected to the development board.
-
 ### Configure Your Own AI Agent
 
 1. Please configure your own AI Agent in the `app_config.h` file.
 2. Modify `TENAI_AGENT_URL` to your own TEN-Agent server URL (typically the port 8080 service you started with `task run`).
 3. Modify `AI_AGENT_CHANNEL_NAME` to your own AI Agent Channel name.
-4. If you have previously configured `openai_v2v` or `gemini_v2v` (depending on the macro definition you configured in `app_config.h` (`CONFIG_GRAPH_OPENAI` or `CONFIG_GRAPH_GEMINI`)) graph in TEN-Agent, you can directly request to use it. `openai_v2v` currently does not support image input, while `gemini_v2v` supports image input.
-5. If you have not configured `openai_v2v` graph or want to use another graph, you need to modify the startup-related parameters in the `_build_start_json` function in `ai_agent.c`.
-6. Recompile and flash to the chip.
-
-#### Demo: LLM AI Agent Real-time Voice Conversation
-
-1. Press the `SET` button to start the LLM
-2. Press the `MUTE` button to stop the LLM
-3. Press the `VOL+` button to increase volume by 10, maximum 100
-4. Press the `VOL-` button to decrease volume by 10, minimum 0
-5. After the device boots up, it automatically connects to the server and joins the channel corresponding to the APPID. Press the `SET` button to start the LLM and begin real-time voice conversation; press the `MUTE` button to stop the LLM.
-
+4. Recompile and flash to the chip.
 
 ## About Agora
 
